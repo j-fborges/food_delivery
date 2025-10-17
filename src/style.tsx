@@ -24,6 +24,11 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     font-family: "Roboto", sans-serif;
   font-optical-sizing: auto;
+
+  }
+
+  a{
+    text-decoration: none;
   }
 `;
 

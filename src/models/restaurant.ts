@@ -45,7 +45,7 @@ enum RestaurantCategoryTypes {
   ITALIAN = "Italiana",
 }
 
-class Dish {
+export class Dish {
   name = "";
   picture = "";
   description = "";
@@ -75,7 +75,7 @@ type DishType = {
   _price: number;
 };
 
-const dishes: Dish[] = [
+export const dishes: Dish[] = [
   {
     name: "Pizza Marguerita",
     picture: pizza,

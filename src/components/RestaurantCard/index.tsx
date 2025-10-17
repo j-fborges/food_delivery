@@ -1,9 +1,13 @@
+import { Link } from "react-router"
 import { Restaurant } from "../../models/restaurant"
 import { RestaurantCardContainer } from "./style"
 import star from "url:../../assets/star.png"
 
-function RestaurantCard({name, category, description, isHighlighted, picture, rating}:Restaurant) {
+type RestaurantCardProps = Restaurant
+
+function RestaurantCard({name, category, description, isHighlighted, picture, rating}:RestaurantCardProps) {
     return (
+        <Link to={"/restaurant"}>
         <RestaurantCardContainer>
             <div className="restaurant-img" style={{backgroundImage: `url(${picture})`}}>
                 <div className="badges-row">
@@ -30,6 +34,7 @@ function RestaurantCard({name, category, description, isHighlighted, picture, ra
                 <button className="know-more" type="button">Saiba Mais</button>
             </div>
         </RestaurantCardContainer>
+        </Link>
     )
 }
 
