@@ -1,0 +1,36 @@
+import { Restaurant } from "../../models/restaurant"
+import { RestaurantCardContainer } from "./style"
+import star from "url:../../assets/star.png"
+
+function RestaurantCard({name, category, description, isHighlighted, picture, rating}:Restaurant) {
+    return (
+        <RestaurantCardContainer>
+            <div className="restaurant-img" style={{backgroundImage: `url(${picture})`}}>
+                <div className="badges-row">
+                    {isHighlighted && <span className="category-badge">
+                        Destaque da semana
+                        </span>}
+                    <span className="category-badge">
+                        {category}
+                    </span>
+
+                </div>
+            </div>
+            <div className="restaurant-info">
+                <div className="title-row">
+                    <span>{name}</span>
+                    <div className="rating-row">
+                        <span>{rating}</span>
+                        <img src={star} alt="Rating Star Icon" />
+                    </div>
+                </div>
+                <p>
+                    {description}
+                </p>
+                <button className="know-more" type="button">Saiba Mais</button>
+            </div>
+        </RestaurantCardContainer>
+    )
+}
+
+export default RestaurantCard
