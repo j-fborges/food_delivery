@@ -40,7 +40,9 @@ export const RestaurantDishesContainer = styled.div`
             .restaurant-category {
                 font-size: 32px;
                 font-weight: 100;
-                color: #FFF
+                color: #FFF;
+                text-transform: capitalize;
+                
             }
 
             .restaurant-name {

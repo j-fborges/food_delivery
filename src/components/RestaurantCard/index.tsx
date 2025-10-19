@@ -5,9 +5,9 @@ import star from "url:../../assets/star.png"
 
 type RestaurantCardProps = Restaurant
 
-function RestaurantCard({name, category, description, isHighlighted, picture, rating}:RestaurantCardProps) {
+function RestaurantCard({id, name, category, description, isHighlighted, picture, rating}:RestaurantCardProps) {
     return (
-        <Link to={"/restaurant"}>
+        <Link to={`/restaurant/${id}`}>
         <RestaurantCardContainer>
             <div className="restaurant-img" style={{backgroundImage: `url(${picture})`}}>
                 <div className="badges-row">

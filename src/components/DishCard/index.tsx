@@ -1,12 +1,14 @@
 import { DishCardContainer } from "./style";
-import { Dish, dishes } from "../../models/restaurant";
+import { Dish } from "../../models/restaurant";
 
-type DishCardProps = Omit<Dish, "price" | "servingSize">
+type DishCardProps = Omit<Dish, "price" | "servingSize" | "id"> & {
+    selectDish: ()=> void
+}
 
-function DishCard ({name, description, picture}:DishCardProps){
+function DishCard ({name, description, picture, selectDish}:DishCardProps){
 
     return (
-        <DishCardContainer>
+        <DishCardContainer onClick={selectDish}>
             <div className="dish-image" style={{backgroundImage: `url(${picture})`}}/>
             <span>{name}</span>
             <p>

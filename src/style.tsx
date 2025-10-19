@@ -23,8 +23,8 @@ const GlobalStyle = createGlobalStyle`
   #app{
     width: 100%;
     font-family: "Roboto", sans-serif;
-  font-optical-sizing: auto;
-
+    font-optical-sizing: auto;
+    position: relative
   }
 
   a{
@@ -32,17 +32,21 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
-const AppFooter = styled.footer`
-  display: flex;
-  background-repeat: no-repeat;
-  background-size: cover;
-  min-height: 360px;
+export const SuspenseContainer = styled.div`
+  background-color: ${colors.cream};
   width: 100%;
+  height: 100%;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 0;
-  gap: 80px;
+
+  span {
+    text-align: center;
+    font-weight: 900;
+    font-size: 32px;
+    color: ${colors.vermillion};
+  }
 `
 
 export default GlobalStyle;

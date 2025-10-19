@@ -3,6 +3,7 @@ import pasta from "url:../assets/pasta.png";
 import pizza from "url:../assets/pizza.png";
 
 export class Restaurant {
+  id = 0
   name = "";
   picture = "";
   category = "";
@@ -12,6 +13,7 @@ export class Restaurant {
   dishes: Dish[] = [];
 
   constructor({
+    _id,
     _name,
     _picture,
     _category,
@@ -20,24 +22,25 @@ export class Restaurant {
     _description,
     _dishes,
   }: RestaurantType) {
+    this.id = _id;
     this.name = _name;
     this.picture = _picture;
     this.category = _category;
     this.isHighlighted = _isHighlighted;
     this.rating = _rating;
     this.description = _description;
-    this.dishes = _dishes;
   }
 }
 
 export type RestaurantType = {
+  _id: number
   _name: string;
   _picture: string;
   _category: RestaurantCategoryTypes;
   _isHighlighted: boolean;
   _rating: number;
   _description: string;
-  _dishes: Dish[];
+  _dishes?: Dish[];
 };
 
 enum RestaurantCategoryTypes {
@@ -47,6 +50,7 @@ enum RestaurantCategoryTypes {
 
 export class Dish {
   name = "";
+  id = 0;
   picture = "";
   description = "";
   servingSize = "";
@@ -54,12 +58,14 @@ export class Dish {
 
   constructor({
     _name,
+    _id,
     _picture,
     _servingSize,
     _description,
     _price,
   }: DishType) {
     this.name = _name;
+    this.id = _id;
     this.picture = _picture;
     this.servingSize = _servingSize;
     this.description = _description;
@@ -73,118 +79,5 @@ type DishType = {
   _servingSize: string;
   _description: string;
   _price: number;
+  _id: number
 };
-
-export const dishes: Dish[] = [
-  {
-    name: "Pizza Marguerita",
-    picture: pizza,
-    description:
-      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
-    servingSize: "2 a 3 pessoas",
-    price: 60.9,
-  },
-  {
-    name: "Pizza Marguerita",
-    picture: pizza,
-    description:
-      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
-    servingSize: "2 a 3 pessoas",
-    price: 60.9,
-  },
-  {
-    name: "Pizza Marguerita",
-    picture: pizza,
-    description:
-      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
-    servingSize: "2 a 3 pessoas",
-    price: 60.9,
-  },
-  {
-    name: "Pizza Marguerita",
-    picture: pizza,
-    description:
-      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
-    servingSize: "2 a 3 pessoas",
-    price: 60.9,
-  },
-  {
-    name: "Pizza Marguerita",
-    picture: pizza,
-    description:
-      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
-    servingSize: "2 a 3 pessoas",
-    price: 60.9,
-  },
-  {
-    name: "Pizza Marguerita",
-    picture: pizza,
-    description:
-      "A clássica Marguerita: molho de tomate suculento, mussarela derretida, manjericão fresco e um toque de azeite. Sabor e simplicidade!",
-    servingSize: "2 a 3 pessoas",
-    price: 60.9,
-  },
-];
-
-export const restaurants: Restaurant[] = [
-  {
-    name: "Hioki Sushi",
-    picture: sushi,
-    category: RestaurantCategoryTypes.JAPONESE,
-    isHighlighted: true,
-    rating: 4.9,
-    description:
-      "Peça já o melhor da culinária japonesa no conforto da sua casa! Sushis frescos, sashimis deliciosos e pratos quentes irresistíveis. Entrega rápida, embalagens cuidadosas e qualidade garantida. Experimente o Japão sem sair do lar com nosso delivery!",
-    dishes: dishes,
-  },
-  {
-    name: "La Dolce Vita Trattoria",
-    picture: pasta,
-    category: RestaurantCategoryTypes.ITALIAN,
-    isHighlighted: false,
-    rating: 4.6,
-    description:
-      "A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!",
-    dishes: dishes,
-  },
-  {
-    name: "La Dolce Vita Trattoria",
-    picture: pasta,
-    category: RestaurantCategoryTypes.ITALIAN,
-    isHighlighted: false,
-    rating: 4.6,
-    description:
-      "A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!",
-    dishes: dishes,
-  },
-  {
-    name: "La Dolce Vita Trattoria",
-    picture: pasta,
-    category: RestaurantCategoryTypes.ITALIAN,
-    isHighlighted: false,
-    rating: 4.6,
-    description:
-      "A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!",
-    dishes: dishes,
-  },
-  {
-    name: "La Dolce Vita Trattoria",
-    picture: pasta,
-    category: RestaurantCategoryTypes.ITALIAN,
-    isHighlighted: false,
-    rating: 4.6,
-    description:
-      "A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!",
-    dishes: dishes,
-  },
-  {
-    name: "La Dolce Vita Trattoria",
-    picture: pasta,
-    category: RestaurantCategoryTypes.ITALIAN,
-    isHighlighted: false,
-    rating: 4.6,
-    description:
-      "A La Dolce Vita Trattoria leva a autêntica cozinha italiana até você! Desfrute de massas caseiras, pizzas deliciosas e risotos incríveis, tudo no conforto do seu lar. Entrega rápida, pratos bem embalados e sabor inesquecível. Peça já!",
-    dishes: dishes,
-  },
-];

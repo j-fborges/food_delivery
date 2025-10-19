@@ -5,7 +5,6 @@ import fundo from "url:../../assets/fundo.png";
 function AppHeader() {
   const location = useLocation();
   const currentPath = location.pathname;
-  console.log("currentUrl:", currentPath);
 
   return currentPath === "/" ? (
     <HomeHeader style={{ backgroundImage: `url(${fundo})` }}>
