@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../style";
+import { colors } from "../../app/style";
 import logo from "url:../../assets/logo.png";
 
 export const HomeHeader = styled.header`
@@ -55,6 +55,7 @@ export const RestaurantHeader = styled.header`
     }
 
     span{
+      cursor: pointer;
       text-align: end;
     }
   }

@@ -1,5 +1,7 @@
-import { Dish } from "../../models/restaurant";
+import { useDispatch } from "react-redux";
+import { Dish } from "../../features/restaurants/restaurant";
 import { ModalBackdrop } from "./style";
+import { addItem, openCart } from "../../features/shoppingCart/shoppingCartSlice";
 
 type DishModalProps = {
   dish: Dish | undefined;
@@ -8,9 +10,11 @@ type DishModalProps = {
 };
 
 function DishModal({ dish, isOpen, onClose }: DishModalProps) {
+  const dispatch = useDispatch()
+
   return (
     <>
-      {isOpen && (
+      {isOpen && dish && (
         <>
           <ModalBackdrop onClick={onClose}>
             <div>
@@ -22,7 +26,11 @@ function DishModal({ dish, isOpen, onClose }: DishModalProps) {
                   <p>{`Serve de ${dish?.servingSize}`}</p>
                 </div>
 
-                <button type="button">
+                <button type="button" onClick={()=>{
+                  onClose()
+                  dispatch(openCart())
+                  dispatch(addItem(dish))
+                }}>
                   {`Adicionar ao carrinho - R$ ${dish?.price.toFixed(2)}`}
                 </button>
               </div>

@@ -1,33 +1,26 @@
-import { useEffect, useState } from "react";
-import { Dish, Restaurant } from "../../models/restaurant";
+import { useEffect } from "react";
 import RestaurantCard from "../RestaurantCard";
 import { RestaurantListContainer } from "./style";
-import { fetchRestaurantsData } from "../../services/api";
-import { SuspenseContainer } from "../../style";
+import { SuspenseContainer } from "../../app/style";
+import { useSelector } from "react-redux";
+import { loadRestaurants } from "../../features/restaurants/restaurantsSlice";
+import { RootReducer, useAppDispatch } from "../../app/store";
 
 function RestaurantList() {
-  const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const restaurantsData = await fetchRestaurantsData();
-        restaurantsData
-          ? setRestaurants(restaurantsData)
-          : () => {
-              throw new Error("Something went wrong, restaurants data is undefined");
-            };
-      } catch (error) {
-        console.error(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const restaurants = useSelector(
+    (state: RootReducer) => state.restaurants.restaurants
+  );
+
+  const isLoading = useSelector((state:RootReducer)=> state.restaurants.loadingRestaurants) == 'pending'
+  const isError = useSelector((state:RootReducer)=> state.restaurants.failedToLoadRestaurants)
+  
+
+    useEffect(()=>{
+      dispatch(loadRestaurants())
+
+    },[dispatch])
 
   return isLoading ? (
     <SuspenseContainer>

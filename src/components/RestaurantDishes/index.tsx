@@ -1,12 +1,13 @@
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { Dish, Restaurant } from "../../models/restaurant";
 import DishCard from "../DishCard";
 import { RestaurantDishesContainer } from "./style";
-import { fetchRestaurantDishesData } from "../../services/api";
 import { useParams } from "react-router";
-import { SuspenseContainer } from "../../style";
-import DishModal from "../DishModal";
-import { ModalDish } from "../../App";
+import { SuspenseContainer } from "../../app/style";
+import { ModalDish } from "../../app/App";
+import { useSelector } from "react-redux";
+import { RootReducer, useAppDispatch } from "../../app/store";
+import { loadcurrentRestaurant, loadRestaurants } from "../../features/restaurants/restaurantsSlice";
+import { Restaurant } from "../../features/restaurants/restaurant";
 
 type RestaurantDishesProps = {
   selectDish:Dispatch<SetStateAction<ModalDish>>
@@ -15,30 +16,20 @@ type RestaurantDishesProps = {
 function RestaurantDishes({selectDish}:RestaurantDishesProps) {
   const { id } = useParams();
 
-  const [restaurant, setRestaurant] = useState<Restaurant>();
-  const [isLoading, setIsLoading] = useState<boolean>(true);
-  const [isError, setIsError] = useState<boolean>(false);
+  const dispatch = useAppDispatch()
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const restaurantData = await fetchRestaurantDishesData(Number(id));
-        restaurantData
-          ? setRestaurant(restaurantData)
-          : () => {
-              throw new Error(
-                "Something went wrong, restaurant data is undefined"
-              );
-            };
-      } catch (error) {
-        console.error(error);
-        setIsError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    };
-    fetchData();
-  }, []);
+  const restaurant = useSelector(
+    (state: RootReducer) => state.restaurants.currentRestaurant
+  );
+
+  const isLoading = useSelector((state:RootReducer)=> state.restaurants.loadingCurrentRestaurant) == 'pending'
+  const isError = useSelector((state:RootReducer)=> state.restaurants.failedToLoadCurrentRestaurant)
+  
+
+    useEffect(()=>{
+      dispatch(loadcurrentRestaurant(String(id)))
+
+    },[dispatch])
 
   return isLoading ? (
     <SuspenseContainer>
@@ -66,9 +57,7 @@ function RestaurantDishes({selectDish}:RestaurantDishesProps) {
           {restaurant.dishes.map((dish, key) => {
             return (
               <DishCard
-                description={dish.description}
-                name={dish.name}
-                picture={dish.picture}
+                dish={dish}
                 key={key}
                 selectDish={ () => {selectDish({isOpen: true, dish: { name: dish.name,
                   id: dish.id,

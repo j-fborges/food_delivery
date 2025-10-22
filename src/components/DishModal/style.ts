@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../style";
+import { colors } from "../../app/style";
 
 export const ModalBackdrop = styled.div`
     display: flex;
@@ -73,6 +73,7 @@ export const ModalBackdrop = styled.div`
                 width: fit-content;
                 padding: 8px;
                 font-weight: 700;
+                cursor: pointer;
             }
         }
 

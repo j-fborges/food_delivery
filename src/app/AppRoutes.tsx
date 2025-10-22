@@ -1,6 +1,6 @@
 import { Routes, Route } from 'react-router'
-import RestaurantList from './components/RestaurantList'
-import RestaurantDishes from './components/RestaurantDishes'
+import RestaurantList from '../components/RestaurantList'
+import RestaurantDishes from '../components/RestaurantDishes'
 import { Dispatch, SetStateAction } from 'react'
 import { ModalDish } from './App'
 

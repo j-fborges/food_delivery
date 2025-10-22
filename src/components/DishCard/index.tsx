@@ -1,19 +1,26 @@
 import { DishCardContainer } from "./style";
-import { Dish } from "../../models/restaurant";
+import { Dish } from "../../features/restaurants/restaurant";
+import { useDispatch } from "react-redux";
+import { addItem, openCart } from "../../features/shoppingCart/shoppingCartSlice";
 
-type DishCardProps = Omit<Dish, "price" | "servingSize" | "id"> & {
+type DishCardProps = {
+    dish: Dish
     selectDish: ()=> void
 }
 
-function DishCard ({name, description, picture, selectDish}:DishCardProps){
+function DishCard ({dish, selectDish}:DishCardProps){
+    const dispatch = useDispatch()
 
     return (
         <DishCardContainer onClick={selectDish}>
-            <div className="dish-image" style={{backgroundImage: `url(${picture})`}}/>
-            <span>{name}</span>
-            <p>
-                {description}
-            </p>
+            <div>
+                <div className="dish-image" style={{backgroundImage: `url(${dish.picture})`}}/>
+                <span>{dish.name}</span>
+                <p>
+                    {dish.description}
+                </p>
+
+            </div>
             <button>
                 Adicionar ao carrinho
             </button>

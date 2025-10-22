@@ -1,33 +1,39 @@
 import styled from "styled-components";
-import { colors } from "../../style";
+import { colors } from "../../app/style";
 
 export const DishCardContainer = styled.div`
     display: flex;
     flex-direction: column;
-    max-width: 304px;
+    max-width: 320px;
     min-height: 338px;
     background-color: ${colors.vermillion};
     padding: 8px;
-    gap: 8px;
+    justify-content: space-between;
     cursor: pointer;
 
-    .dish-image{
-        width: 304px;
-        height: 167px;
-        background-size: cover
-    }
+    div {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        
+        .dish-image{
+            width: 304px;
+            height: 167px;
+            background-size: cover
+        }
+    
+        span {
+            color: #FFF;
+            font-size: 16px;
+            font-weight: 900;
+        }
+    
+        p {
+            font-size: 14px;
+            color: ${colors.cream};
+        }
 
-    span {
-        color: #FFF;
-        font-size: 16px;
-        font-weight: 900;
     }
-
-    p {
-        font-size: 14px;
-        color: ${colors.cream};
-    }
-
     button {
         background-color: ${colors.pale};
         color: ${colors.vermillion};
@@ -38,5 +44,8 @@ export const DishCardContainer = styled.div`
         font-size: 14px;
         font-weight: 700;
         border-width: 0px;
+        cursor: pointer;
     }
+
+
 `

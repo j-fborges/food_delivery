@@ -36,17 +36,12 @@ export type RestaurantType = {
   _id: number
   _name: string;
   _picture: string;
-  _category: RestaurantCategoryTypes;
+  _category: string;
   _isHighlighted: boolean;
   _rating: number;
   _description: string;
   _dishes?: Dish[];
 };
-
-enum RestaurantCategoryTypes {
-  JAPONESE = "Japonesa",
-  ITALIAN = "Italiana",
-}
 
 export class Dish {
   name = "";

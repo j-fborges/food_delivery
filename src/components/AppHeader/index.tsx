@@ -1,10 +1,16 @@
 import { Link, useLocation } from "react-router";
 import { HomeHeader, LogoBadge, RestaurantHeader } from "./style";
 import fundo from "url:../../assets/fundo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { RootReducer } from "../../app/store";
+import { openCart } from "../../features/shoppingCart/shoppingCartSlice";
 
 function AppHeader() {
   const location = useLocation();
   const currentPath = location.pathname;
+
+  const cartItemsLength = useSelector((state:RootReducer)=>state.shoppingCart.items.length)
+  const dispatch = useDispatch()
 
   return currentPath === "/" ? (
     <HomeHeader style={{ backgroundImage: `url(${fundo})` }}>
@@ -19,7 +25,7 @@ function AppHeader() {
           <span>Restaurantes</span>
         </Link>
         <LogoBadge alt="Efood Logo" />
-        <span>0 produto(s) no carrinho</span>
+        <span onClick={() => dispatch(openCart())}>{`${cartItemsLength} produto(s) no carrinho`}</span>
       </div>
     </RestaurantHeader>
   );

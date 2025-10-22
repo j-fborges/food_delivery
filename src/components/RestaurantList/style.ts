@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { colors } from "../../style";
+import { colors } from "../../app/style";
 
 export const RestaurantListContainer = styled.section`
 background-color: ${colors.cream};

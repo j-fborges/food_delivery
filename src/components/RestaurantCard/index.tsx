@@ -1,5 +1,5 @@
 import { Link } from "react-router"
-import { Restaurant } from "../../models/restaurant"
+import { Restaurant } from "../../features/restaurants/restaurant"
 import { RestaurantCardContainer } from "./style"
 import star from "url:../../assets/star.png"
 
