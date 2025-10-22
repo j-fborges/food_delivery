@@ -11,32 +11,36 @@ import store from "./store";
 import ShoppingCartModal from "../components/ShoppingCartModal";
 
 export interface ModalDish {
-isOpen: boolean,
-dish: Dish | undefined
+  isOpen: boolean;
+  dish: Dish | undefined;
 }
 export function App() {
-
-const [modalDish, setModalDish] = useState<ModalDish>({
+  const [modalDish, setModalDish] = useState<ModalDish>({
     isOpen: false,
-    dish: undefined
-  })
+    dish: undefined,
+  });
 
   return (
     <>
-    <Provider store={store}>
-      <BrowserRouter>
-      <GlobalStyle />
-      <DishModal isOpen={modalDish.isOpen} dish={modalDish.dish} onClose={() => {setModalDish({
-        isOpen: false,
-        dish: undefined
-      })}}/>
-      <ShoppingCartModal/>
-      <AppHeader/>
-      <AppRoutes 
-      selectDish={setModalDish}/>
-      <AppFooter/>
-      </BrowserRouter>
-    </Provider>
+      <Provider store={store}>
+        <BrowserRouter>
+          <GlobalStyle />
+          <DishModal
+            isOpen={modalDish.isOpen}
+            dish={modalDish.dish}
+            onClose={() => {
+              setModalDish({
+                isOpen: false,
+                dish: undefined,
+              });
+            }}
+          />
+          <ShoppingCartModal />
+          <AppHeader />
+          <AppRoutes selectDish={setModalDish} />
+          <AppFooter />
+        </BrowserRouter>
+      </Provider>
     </>
   );
 }

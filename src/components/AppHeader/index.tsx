@@ -9,8 +9,10 @@ function AppHeader() {
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const cartItemsLength = useSelector((state:RootReducer)=>state.shoppingCart.items.length)
-  const dispatch = useDispatch()
+  const cartItemsLength = useSelector(
+    (state: RootReducer) => state.shoppingCart.items.length,
+  );
+  const dispatch = useDispatch();
 
   return currentPath === "/" ? (
     <HomeHeader style={{ backgroundImage: `url(${fundo})` }}>
@@ -25,7 +27,9 @@ function AppHeader() {
           <span>Restaurantes</span>
         </Link>
         <LogoBadge alt="Efood Logo" />
-        <span onClick={() => dispatch(openCart())}>{`${cartItemsLength} produto(s) no carrinho`}</span>
+        <span
+          onClick={() => dispatch(openCart())}
+        >{`${cartItemsLength} produto(s) no carrinho`}</span>
       </div>
     </RestaurantHeader>
   );

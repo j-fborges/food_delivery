@@ -1,10 +1,10 @@
 import styled, { createGlobalStyle } from "styled-components";
 
 export const colors = {
-  vermillion: '#E66767',
-  pale: '#FFEBD9',
-  cream: '#FFF8F2'
-}
+  vermillion: "#E66767",
+  pale: "#FFEBD9",
+  cream: "#FFF8F2",
+};
 
 const GlobalStyle = createGlobalStyle`
 
@@ -51,6 +51,6 @@ export const SuspenseContainer = styled.div`
     font-size: 32px;
     color: ${colors.vermillion};
   }
-`
+`;
 
 export default GlobalStyle;

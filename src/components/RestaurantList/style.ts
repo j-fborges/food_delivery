@@ -2,10 +2,10 @@ import styled from "styled-components";
 import { colors } from "../../app/style";
 
 export const RestaurantListContainer = styled.section`
-background-color: ${colors.cream};
-width: 100%;
+  background-color: ${colors.cream};
+  width: 100%;
 
-& > div {
+  & > div {
     padding-top: 80px;
     padding-bottom: 120px;
     display: flex;
@@ -15,6 +15,5 @@ width: 100%;
     margin: 0 auto;
     max-width: 1024px;
     width: 100%;
-
-}
+  }
 `;

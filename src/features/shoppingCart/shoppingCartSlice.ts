@@ -31,7 +31,7 @@ const shoppingCartSlice = createSlice({
       const idToRemove = state.items.findIndex((item) => {
         return item.id === action.payload.id;
       });
-      
+
       state.items = state.items.filter((item, key) => key != idToRemove);
       state.cartTotal -= action.payload.price;
     },

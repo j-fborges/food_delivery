@@ -52,7 +52,7 @@ export const loadRestaurants = createAsyncThunk(
   "restaurants/loadRestaurants",
   async () => {
     const response = await fetch(
-      `https://api-ebac.vercel.app/api/efood/restaurantes`
+      `https://api-ebac.vercel.app/api/efood/restaurantes`,
     );
 
     const rawData = await response.json();
@@ -60,19 +60,18 @@ export const loadRestaurants = createAsyncThunk(
     const data: Restaurant[] = [];
 
     rawData.map((restaurant: restaurantFetchFields) => {
-      let formatedDishes: Dish[] = [];
+      const formatedDishes: Dish[] = [];
 
-      restaurant.cardapio &&
-        restaurant.cardapio.map((dish: dishesFetchFields) => {
-          formatedDishes.push({
-            name: dish.nome,
-            description: dish.descricao,
-            picture: dish.foto,
-            price: dish.preco,
-            servingSize: dish.porcao,
-            id: dish.id,
-          });
+      restaurant?.cardapio?.forEach((dish: dishesFetchFields) => {
+        formatedDishes.push({
+          name: dish.nome,
+          description: dish.descricao,
+          picture: dish.foto,
+          price: dish.preco,
+          servingSize: dish.porcao,
+          id: dish.id,
         });
+      });
 
       data.push({
         name: restaurant.titulo,
@@ -87,20 +86,20 @@ export const loadRestaurants = createAsyncThunk(
     });
 
     return data;
-  }
+  },
 );
 
 export const loadcurrentRestaurant = createAsyncThunk(
   "restaurants/loadCurrentRestaurant",
   async (id: string) => {
     const response = await fetch(
-      `https://api-ebac.vercel.app/api/efood/restaurantes/${id}`
+      `https://api-ebac.vercel.app/api/efood/restaurantes/${id}`,
     );
 
     const rawData = await response.json();
 
     const formatedDishes: Dish[] = [];
-    
+
     rawData.cardapio.map((dish: dishesFetchFields) => {
       formatedDishes.push({
         name: dish.nome,
@@ -124,7 +123,7 @@ export const loadcurrentRestaurant = createAsyncThunk(
     };
 
     return data;
-  }
+  },
 );
 
 const restaurantsSlice = createSlice({

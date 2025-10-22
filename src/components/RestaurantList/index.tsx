@@ -7,20 +7,22 @@ import { loadRestaurants } from "../../features/restaurants/restaurantsSlice";
 import { RootReducer, useAppDispatch } from "../../app/store";
 
 function RestaurantList() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
 
   const restaurants = useSelector(
-    (state: RootReducer) => state.restaurants.restaurants
+    (state: RootReducer) => state.restaurants.restaurants,
   );
 
-  const isLoading = useSelector((state:RootReducer)=> state.restaurants.loadingRestaurants) == 'pending'
-  const isError = useSelector((state:RootReducer)=> state.restaurants.failedToLoadRestaurants)
-  
+  const isLoading =
+    useSelector((state: RootReducer) => state.restaurants.loadingRestaurants) ==
+    "pending";
+  const isError = useSelector(
+    (state: RootReducer) => state.restaurants.failedToLoadRestaurants,
+  );
 
-    useEffect(()=>{
-      dispatch(loadRestaurants())
-
-    },[dispatch])
+  useEffect(() => {
+    dispatch(loadRestaurants());
+  }, [dispatch]);
 
   return isLoading ? (
     <SuspenseContainer>

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import { ModalBackdrop } from "../DishModal/style";
 import { colors } from "../../app/style";
 import trashIcon from "url:../../assets/trashIcon.png";
 
@@ -94,7 +93,7 @@ export const CartBackdrop = styled.div`
 export const CartItem = styled.div`
   margin: 0px;
   .cart-item {
-    position:relative;
+    position: relative;
     max-width: 344px;
     width: 100%;
     padding: 8px;
@@ -153,7 +152,7 @@ export const CartItem = styled.div`
           background-image: url(${trashIcon});
           background-size: cover;
           cursor: pointer;
-          bottom: 0
+          bottom: 0;
         }
       }
     }
