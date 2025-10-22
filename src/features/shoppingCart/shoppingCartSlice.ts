@@ -1,16 +1,25 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Dish } from "../restaurants/restaurant";
 
+enum shoppingCartStage {
+    CART = "cart",
+    DELIVERY = "delivery",
+    PAYMENT = "payment",
+    SUCCESS = "success"
+}
+
 interface ShoppingCartState {
   isOpen: boolean;
   items: Dish[];
   cartTotal: number;
+  cartStage: shoppingCartStage;
 }
 
 const initialState: ShoppingCartState = {
   isOpen: false,
   items: [],
   cartTotal: 0,
+  cartStage: shoppingCartStage.CART
 };
 
 const shoppingCartSlice = createSlice({
@@ -35,9 +44,12 @@ const shoppingCartSlice = createSlice({
       state.items = state.items.filter((item, key) => key != idToRemove);
       state.cartTotal -= action.payload.price;
     },
+    setDeliveryStage: (state) => {
+        state.cartStage = shoppingCartStage.DELIVERY
+    }
   },
 });
 
 export default shoppingCartSlice.reducer;
-export const { addItem, closeCart, openCart, removeItem } =
+export const { addItem, closeCart, openCart, removeItem, setDeliveryStage } =
   shoppingCartSlice.actions;
