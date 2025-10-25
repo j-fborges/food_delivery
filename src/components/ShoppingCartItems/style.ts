@@ -3,66 +3,66 @@ import trashIcon from "url:../../assets/trashIcon.png";
 import { colors } from "../../app/style";
 
 export const CartItemsList = styled.div`
-      box-sizing: border-box;
-      max-width: 360px;
-      width: 100%;
-      overflow-y: scroll;
-      padding: 0px;
+  box-sizing: border-box;
+  max-width: 360px;
+  width: 100%;
+  overflow-y: scroll;
+  padding: 0px;
+  display: flex;
+  flex-direction: column;
+  background-color: ${colors.vermillion};
+  gap: 40px;
+  cursor: default;
+  position: sticky;
+  top: 16px;
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none; /* Older Safari and Chromium */
+  }
+
+  .shopping-cart-items {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .shopping-cart-footer {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+
+    > div {
       display: flex;
-      flex-direction: column;
-      background-color: ${colors.vermillion};
-      gap: 40px;
-      cursor: default;
-      position: sticky;
-      top: 16px;
+      flex-direction: row;
+      justify-content: space-between;
 
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-      &::-webkit-scrollbar {
-        display: none; /* Older Safari and Chromium */
+      span {
+        font-weight: 700;
+        font-size: 14px;
+        color: ${colors.pale};
       }
+    }
 
-      .shopping-cart-items {
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-      }
+    button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: ${colors.pale};
+      border-width: 0px;
+      height: 24px;
 
-      .shopping-cart-footer {
-        display: flex;
-        width: 100%;
-        flex-direction: column;
-        gap: 16px;
-
-        > div {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-
-          span {
-            font-weight: 700;
-            font-size: 14px;
-            color: ${colors.pale};
-          }
-        }
-
-        button {
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          background-color: ${colors.pale};
-          border-width: 0px;
-          height: 24px;
-
-          font-weight: 700;
-          font-size: 14px;
-          color: ${colors.vermillion};
-          width: 100%;
-          cursor: pointer;
-        }
-      }
-`
+      font-weight: 700;
+      font-size: 14px;
+      color: ${colors.vermillion};
+      width: 100%;
+      cursor: pointer;
+    }
+  }
+`;
 
 export const CartItem = styled.div`
   margin: 0px;
