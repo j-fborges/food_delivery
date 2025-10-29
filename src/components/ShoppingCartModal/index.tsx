@@ -6,6 +6,7 @@ import {
   closeCart,
   removeItem,
 } from "../../features/shoppingCart/shoppingCartSlice";
+import { formatPrice } from "../DishModal";
 
 function ShoppingCartModal() {
   const items = useSelector((state: RootReducer) => state.shoppingCart.items);
@@ -40,7 +41,7 @@ function ShoppingCartModal() {
                         />
                         <div>
                           <span className="dish-title">{item.name}</span>
-                          <span className="dish-price">{item.price}</span>
+                          <span className="dish-price">{formatPrice(item.price)}</span>
                           <div>
                             <button
                               onClick={() => {
@@ -58,7 +59,7 @@ function ShoppingCartModal() {
               <div className="shopping-cart-footer">
                 <div>
                   <span>Valor total</span>
-                  <span>{`R$ ${cartTotal.toFixed(2)}`}</span>
+                  <span>{`${formatPrice(cartTotal)}`}</span>
                 </div>
                 <div>
                   <button type="button" onClick={() => {}}>

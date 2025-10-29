@@ -9,6 +9,13 @@ type DishModalProps = {
   onClose: () => void;
 };
 
+export const formatPrice = (price = 0) => {
+  return new Intl.NumberFormat('pt-BR', {
+    style: 'currency',
+    currency: 'BRL'
+  }).format(price)
+}
+
 function DishModal({ dish, isOpen, onClose }: DishModalProps) {
   const dispatch = useDispatch()
 
@@ -31,7 +38,7 @@ function DishModal({ dish, isOpen, onClose }: DishModalProps) {
                   dispatch(openCart())
                   dispatch(addItem(dish))
                 }}>
-                  {`Adicionar ao carrinho - R$ ${dish?.price.toFixed(2)}`}
+                  {`Adicionar ao carrinho - ${formatPrice(dish?.price)}`}
                 </button>
               </div>
             </div>
