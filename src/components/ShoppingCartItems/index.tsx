@@ -6,6 +6,7 @@ import {
   removeItem,
   setShippingStage,
 } from "../../features/shoppingCart/shoppingCartSlice";
+import { formatPrice } from "../DishModal";
 
 function ShoppingCartItems() {
   const items = useSelector((state: RootReducer) => state.shoppingCart.items);
@@ -24,7 +25,7 @@ function ShoppingCartItems() {
                 <img src={item.picture} alt={`Picture of ${item.name}`} />
                 <div>
                   <span className="dish-title">{item.name}</span>
-                  <span className="dish-price">{item.price}</span>
+                  <span className="dish-price">{formatPrice(item.price)}</span>
                   <div>
                     <button
                       onClick={() => {
@@ -42,7 +43,7 @@ function ShoppingCartItems() {
       <div className="shopping-cart-footer">
         <div>
           <span>Valor total</span>
-          <span>{`R$ ${cartTotal.toFixed(2)}`}</span>
+          <span>{formatPrice(cartTotal)}</span>
         </div>
         <button type="button" onClick={() => dispatch(setShippingStage())}>
           Continuar com a entrega

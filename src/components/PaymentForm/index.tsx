@@ -10,6 +10,7 @@ import {
 import { useHookFormMask } from "use-mask-input";
 import { SuspenseContainer } from "../../app/style";
 import OrderConfirmation from "../OrderConfirmation";
+import { formatPrice } from "../DishModal";
 
 export type PaymentFormInputs = {
   cardHolderName: string;
@@ -71,7 +72,7 @@ function PaymentForm() {
 
   return (
     <FormContainer>
-      <h4>{`Pagamento - Valor a pagar R$ ${cartTotal.toFixed(2)}`}</h4>
+      <h4>{`Pagamento - Valor a pagar ${formatPrice(cartTotal)}`}</h4>
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <InputGroup>
