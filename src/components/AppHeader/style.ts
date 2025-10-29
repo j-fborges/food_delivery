@@ -43,18 +43,19 @@ export const RestaurantHeader = styled.header`
     min-height: 160px;
     max-width: 1024px;
 
-    span, a {
+    span,
+    a {
       font-weight: 900;
       color: ${colors.vermillion};
       font-size: 18px;
       width: 225px;
     }
 
-    a{
+    a {
       text-align: start;
     }
 
-    span{
+    span {
       cursor: pointer;
       text-align: end;
     }

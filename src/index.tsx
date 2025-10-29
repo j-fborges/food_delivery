@@ -1,11 +1,11 @@
-import { createRoot } from 'react-dom/client';
-import { StrictMode } from 'react';
-import { App } from './app/App';
+import { createRoot } from "react-dom/client";
+import { StrictMode } from "react";
+import { App } from "./app/App";
 
-let container = document.getElementById("app")!;
-let root = createRoot(container)
+const container = document.getElementById("app")!;
+const root = createRoot(container);
 root.render(
   <StrictMode>
     <App />
-  </StrictMode>
+  </StrictMode>,
 );

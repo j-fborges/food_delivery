@@ -1,9 +1,5 @@
-import sushi from "url:../assets/sushi.png";
-import pasta from "url:../assets/pasta.png";
-import pizza from "url:../assets/pizza.png";
-
 export class Restaurant {
-  id = 0
+  id = 0;
   name = "";
   picture = "";
   category = "";
@@ -20,7 +16,6 @@ export class Restaurant {
     _isHighlighted,
     _rating,
     _description,
-    _dishes,
   }: RestaurantType) {
     this.id = _id;
     this.name = _name;
@@ -33,7 +28,7 @@ export class Restaurant {
 }
 
 export type RestaurantType = {
-  _id: number
+  _id: number;
   _name: string;
   _picture: string;
   _category: string;
@@ -74,5 +69,5 @@ type DishType = {
   _servingSize: string;
   _description: string;
   _price: number;
-  _id: number
+  _id: number;
 };

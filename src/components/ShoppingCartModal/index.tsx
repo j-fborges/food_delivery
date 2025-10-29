@@ -1,19 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ModalBackdrop } from "../DishModal/style";
-import { CartBackdrop, CartItem } from "./style";
+import { CartBackdrop } from "./style";
 import { RootReducer } from "../../app/store";
 import {
   closeCart,
-  removeItem,
+  shoppingCartStage,
 } from "../../features/shoppingCart/shoppingCartSlice";
-import { formatPrice } from "../DishModal";
+import ShoppingCartItems from "../ShoppingCartItems";
+import ShippingAddressForm from "../ShippingAddressForm";
+import PaymentForm from "../PaymentForm";
 
 function ShoppingCartModal() {
-  const items = useSelector((state: RootReducer) => state.shoppingCart.items);
   const isOpen = useSelector((state: RootReducer) => state.shoppingCart.isOpen);
-  const cartTotal = useSelector(
-    (state: RootReducer) => state.shoppingCart.cartTotal
+  const shoppingStage = useSelector(
+    (state: RootReducer) => state.shoppingCart.cartStage,
   );
+
   const dispatch = useDispatch();
 
   return (
@@ -29,45 +30,13 @@ function ShoppingCartModal() {
               e.stopPropagation();
             }}
           >
-            <div>
-              <div className="shopping-cart-items">
-                {items.map((item, key) => {
-                  return (
-                    <CartItem key={key}>
-                      <div className="cart-item">
-                        <img
-                          src={item.picture}
-                          alt={`Picture of ${item.name}`}
-                        />
-                        <div>
-                          <span className="dish-title">{item.name}</span>
-                          <span className="dish-price">{formatPrice(item.price)}</span>
-                          <div>
-                            <button
-                              onClick={() => {
-                                dispatch(removeItem(item));
-                                if (items.length <= 1) dispatch(closeCart());
-                              }}
-                            />
-                          </div>
-                        </div>
-                      </div>
-                    </CartItem>
-                  );
-                })}
-              </div>
-              <div className="shopping-cart-footer">
-                <div>
-                  <span>Valor total</span>
-                  <span>{`${formatPrice(cartTotal)}`}</span>
-                </div>
-                <div>
-                  <button type="button" onClick={() => {}}>
-                    Continuar com a entrega
-                  </button>
-                </div>
-              </div>
-            </div>
+            {shoppingStage == shoppingCartStage.CART ? (
+              <ShoppingCartItems />
+            ) : shoppingStage == shoppingCartStage.SHIPPING ? (
+              <ShippingAddressForm />
+            ) : (
+              <PaymentForm />
+            )}
           </div>
         </CartBackdrop>
       )}

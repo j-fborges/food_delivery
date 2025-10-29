@@ -16,18 +16,17 @@ export const FooterContainer = styled.footer`
     gap: 12px;
     margin-bottom: 32px;
 
-    img{
-        height: 24px;
-        width: 24px;
+    img {
+      height: 24px;
+      width: 24px;
     }
   }
 
-  p{
+  p {
     font-size: 10px;
     font-weight: 400;
     max-width: 480px;
     text-align: center;
     color: ${colors.vermillion};
-
   }
 `;

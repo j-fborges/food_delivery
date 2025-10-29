@@ -1,7 +1,10 @@
 import { useDispatch } from "react-redux";
 import { Dish } from "../../features/restaurants/restaurant";
 import { ModalBackdrop } from "./style";
-import { addItem, openCart } from "../../features/shoppingCart/shoppingCartSlice";
+import {
+  addItem,
+  openCart,
+} from "../../features/shoppingCart/shoppingCartSlice";
 
 type DishModalProps = {
   dish: Dish | undefined;
@@ -17,7 +20,7 @@ export const formatPrice = (price = 0) => {
 }
 
 function DishModal({ dish, isOpen, onClose }: DishModalProps) {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   return (
     <>
