@@ -166,6 +166,7 @@ const shoppingCartSlice = createSlice({
       },
       fulfilled: (state, action) => {
         state.orderId = action.payload.orderId;
+        state.cartStage = shoppingCartStage.SUCCESS;
       },
       rejected: (state, action) => {
         state.errorLoadingPaymentCheckout = action.error;

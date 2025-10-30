@@ -56,6 +56,10 @@ function ShippingAddressForm() {
             id="receiverName"
             {...register("receiverName", {
               required: "Campo de Nome do Destinatário é obrigatório",
+              minLength: {
+                value: 3,
+                message: "O Campo precisa conter pelomenos 3 caracteres",
+              },
             })}
           />
           <span>{errors.receiverName?.message}</span>
@@ -66,6 +70,10 @@ function ShippingAddressForm() {
             type="text"
             {...register("address", {
               required: "Campo de Endereço é obrigatório",
+              minLength: {
+                value: 3,
+                message: "O Campo precisa conter pelomenos 3 caracteres",
+              },
             })}
             id="address"
           />
@@ -75,7 +83,13 @@ function ShippingAddressForm() {
           <label htmlFor="city">Cidade</label>
           <input
             type="text"
-            {...register("city", { required: "Campo de Cidade é obrigatório" })}
+            {...register("city", {
+              required: "Campo de Cidade é obrigatório",
+              minLength: {
+                value: 3,
+                message: "O Campo precisa conter pelomenos 3 caracteres",
+              },
+            })}
             id="city"
           />
           <span>{errors.city?.message}</span>
@@ -95,6 +109,10 @@ function ShippingAddressForm() {
                   value: 9,
                   message: "O CEP precisa conter 8 dígitos",
                 },
+                jitMasking: true,
+                validate: (input) => {
+                  return input.length == 9 ? true : false;
+                },
               })}
               id="cepShippingCode"
             />
@@ -106,6 +124,10 @@ function ShippingAddressForm() {
               type="text"
               {...register("number", {
                 required: "Campo de Número é obrigatório",
+                minLength: {
+                  value: 2,
+                  message: "O número precisa ter dois digitos",
+                },
               })}
               id="number"
             />

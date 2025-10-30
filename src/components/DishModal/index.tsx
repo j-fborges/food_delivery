@@ -13,11 +13,11 @@ type DishModalProps = {
 };
 
 export const formatPrice = (price = 0) => {
-  return new Intl.NumberFormat('pt-BR', {
-    style: 'currency',
-    currency: 'BRL'
-  }).format(price)
-}
+  return new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+  }).format(price);
+};
 
 function DishModal({ dish, isOpen, onClose }: DishModalProps) {
   const dispatch = useDispatch();
@@ -36,11 +36,14 @@ function DishModal({ dish, isOpen, onClose }: DishModalProps) {
                   <p>{`Serve de ${dish?.servingSize}`}</p>
                 </div>
 
-                <button type="button" onClick={()=>{
-                  onClose()
-                  dispatch(openCart())
-                  dispatch(addItem(dish))
-                }}>
+                <button
+                  type="button"
+                  onClick={() => {
+                    onClose();
+                    dispatch(openCart());
+                    dispatch(addItem(dish));
+                  }}
+                >
                   {`Adicionar ao carrinho - ${formatPrice(dish?.price)}`}
                 </button>
               </div>

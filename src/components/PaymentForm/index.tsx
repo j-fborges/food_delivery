@@ -6,6 +6,7 @@ import {
   clearCart,
   paymentCheckout,
   setShippingStage,
+  shoppingCartStage,
 } from "../../features/shoppingCart/shoppingCartSlice";
 import { useHookFormMask } from "use-mask-input";
 import { SuspenseContainer } from "../../app/style";
@@ -22,6 +23,10 @@ export type PaymentFormInputs = {
 
 function PaymentForm() {
   const dispatch = useAppDispatch();
+  const inSuccessStage = useSelector(
+    (state: RootReducer) =>
+      state.shoppingCart.cartStage == shoppingCartStage.SUCCESS,
+  );
   const shippingData = useSelector(
     (state: RootReducer) => state.shoppingCart.shippingData,
   );
@@ -66,7 +71,7 @@ function PaymentForm() {
     );
   }
 
-  if (checkoutLoading == "fulfilled") {
+  if (checkoutLoading == "fulfilled" && inSuccessStage) {
     return <OrderConfirmation />;
   }
 
@@ -82,6 +87,10 @@ function PaymentForm() {
             id="cardHolderName"
             {...register("cardHolderName", {
               required: "Campo de Nome no Cartão é obrigatório",
+              minLength: {
+                value: 3,
+                message: "O Campo precisa conter pelomenos 3 caracteres",
+              },
             })}
           />
           <span>{errors.cardHolderName?.message}</span>
@@ -100,6 +109,10 @@ function PaymentForm() {
                 minLength: {
                   value: 19,
                   message: "O Número do cartão precisa conter 16 dígitos",
+                },
+                jitMasking: true,
+                validate: (input) => {
+                  return input.length == 19 ? true : false;
                 },
               })}
               id="cardNumber"
@@ -141,6 +154,10 @@ function PaymentForm() {
                   value: 2,
                   message: "O Mês de Vencimento precisa conter 2 dígitos",
                 },
+                max: {
+                  value: 12,
+                  message: "O número não corresponde ao de um mês",
+                },
               })}
               id="expiryMonth"
             />
@@ -159,6 +176,10 @@ function PaymentForm() {
                 minLength: {
                   value: 4,
                   message: "O Ano de Vencimento precisa conter 4 dígitos",
+                },
+                min: {
+                  value: new Date().getFullYear() - 1,
+                  message: "O ano precisa ser maior que 2024",
                 },
               })}
               id="expiryYear"

@@ -3,6 +3,7 @@ import { CartBackdrop } from "./style";
 import { RootReducer } from "../../app/store";
 import {
   closeCart,
+  setShoppingStage,
   shoppingCartStage,
 } from "../../features/shoppingCart/shoppingCartSlice";
 import ShoppingCartItems from "../ShoppingCartItems";
@@ -11,6 +12,10 @@ import PaymentForm from "../PaymentForm";
 
 function ShoppingCartModal() {
   const isOpen = useSelector((state: RootReducer) => state.shoppingCart.isOpen);
+  const inSuccessStage = useSelector(
+    (state: RootReducer) =>
+      state.shoppingCart.cartStage == shoppingCartStage.SUCCESS,
+  );
   const shoppingStage = useSelector(
     (state: RootReducer) => state.shoppingCart.cartStage,
   );
@@ -22,6 +27,7 @@ function ShoppingCartModal() {
       {isOpen && (
         <CartBackdrop
           onClick={() => {
+            if (inSuccessStage) dispatch(setShoppingStage());
             dispatch(closeCart());
           }}
         >
